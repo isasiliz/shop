@@ -1,12 +1,16 @@
 const express = require('express')
-const mongoose = require ('mongoose')
+const mongoose = require('mongoose')
 const app = express()
 
 class Server {
-    constructor (){
+    constructor () {
         this.app = app
+        this.middleware()
         this.routes()
-        this.start()
+    }
+
+    middleware () {
+        this.app.use(express.json())
     }
 
     routes(){
@@ -16,11 +20,11 @@ class Server {
     start() {
         this.app.listen(1995,() => {
             console.log ('Server is open')
-            this.conectarBasededatos()
+            this.connectDB()
         }
     )}
     
-    async conectarBasededatos() {
+    async connectDB() {
         try {
             await mongoose.connect('mongodb+srv://lizcisasi:wTMwuvnafcffNoVF@cluster0.di2p8m8.mongodb.net/shop')
             console.log ('Are you connected')  
@@ -30,10 +34,4 @@ class Server {
     }             
 }
        
-
-    
-
-
-
-
 module.exports = Server
