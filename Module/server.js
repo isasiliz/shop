@@ -14,7 +14,7 @@ class Server {
     }
 
     routes(){
-        this.app.use('/', require('../Routes/users_routes'))
+        this.app.use('/', require('../Feature/User/users_routes'))
     }
 
     start() {

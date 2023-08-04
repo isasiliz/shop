@@ -1,4 +1,4 @@
-const User = require('../Model/user_model')
+const User = require('../Feature/User/user_model')
 
 const checkUniqueUsername = async (username='') => {
     const user = await User.findOne({username: username})

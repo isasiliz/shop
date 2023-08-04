@@ -1,11 +1,11 @@
 const Routes = require('express')
 const routes = Routes()
-const {getUser,createUser, updateUser, deleteUser} = require ('../Controller/users_controller')
+const {getUser,createUser, updateUser, deleteUser} = require ('./users_controller')
 const {check} = require('express-validator')
-const checkValidationResult = require('../Middleware/check_validation_result')
-const checkUniqueEmail = require('../Middleware/check_unique_email')
-const checkUniqueRole = require('../Middleware/check_unique_role')
-const checkUniqueUsername = require('../Middleware/check_unique_username')
+const checkValidationResult = require('../../Middleware/check_validation_result')
+const checkUniqueEmail = require('../../Middleware/check_unique_email')
+const checkUniqueRole = require('../../Middleware/check_unique_role')
+const checkUniqueUsername = require('../../Middleware/check_unique_username')
 
 routes.get('/user', getUser)
     

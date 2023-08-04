@@ -1,4 +1,4 @@
-const Role = require ('../Model/role_model')
+const Role = require ('../Feature/Role/role_model')
 
 const checkUniqueRole = async (rolename = '') => {
     const role = await Role.findOne ({name: rolename})
