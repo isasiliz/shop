@@ -6,4 +6,4 @@ const checkUniqueRole = async (rolename = '') => {
         throw new Error ('this role does not exist')
     }
 }
-module.exports = checkUniqueRole
+module.exports = checkUniqueRole 
