@@ -13,8 +13,9 @@ class Server {
         this.app.use(express.json())
     }
 
-    routes(){
+    routes() {
         this.app.use('/', require('../Feature/User/users_routes'))
+        this.app.use ('/', require('../Feature/Login/login_routes'))
     }
 
     start() {

@@ -6,27 +6,28 @@ const checkValidationResult = require('../../Middleware/check_validation_result'
 const checkUniqueEmail = require('../../Middleware/check_unique_email')
 const checkUniqueRole = require('../../Middleware/check_unique_role')
 const checkUniqueUsername = require('../../Middleware/check_unique_username')
+const verifyToken = require('../../Middleware/verifyToken')
 
-routes.get('/user', getUser)
+routes.get('/user', verifyToken, getUser)
     
 routes.post('/user', [
-    check ('username', 'Invalid username').isLength({min:6,max:8}),
-    check ('role').custom(checkUniqueRole),
-    check ('username').custom(checkUniqueUsername),
-    check ('email','Invalid email').isEmail(),
-    check ('email').custom(checkUniqueEmail),
-    check ('password','The password must comply with at least one uppercase, lowercase, one special character, and one number.').isStrongPassword({
-        minLength: 8,
-        minLowercase: 1,
-        minUppercase: 1,
-        minNumbers: 1,
-        minSymbols: 1,
-    }),
-    checkValidationResult
+  //  check ('username', 'Invalid username').isLength({min:6,max:8}),
+   // check ('role').custom(checkUniqueRole),
+   // check ('username').custom(checkUniqueUsername),
+    //check ('email','Invalid email').isEmail(),
+   // check ('email').custom(checkUniqueEmail),
+   // check ('password','The password must comply with at least one uppercase, lowercase, one special character, and one number.').isStrongPassword({
+   //     minLength: 8,
+   //     minLowercase: 1,
+   //     minUppercase: 1,
+   //     minNumbers: 1,
+   //     minSymbols: 1,
+ //   }),
+   // checkValidationResult
 
 ], createUser)
   
-routes.put('/user', [
+routes.put('/user', [verifyToken,
     check ('username', 'Invalid username').isLength({min:6,max:8}),
     check ('username').custom(checkUniqueUsername),
     checkValidationResult
