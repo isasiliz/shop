@@ -13,7 +13,7 @@ routes.get('/user', verifyToken, getUser)
 routes.post('/user', [
   //  check ('username', 'Invalid username').isLength({min:6,max:8}),
    // check ('role').custom(checkUniqueRole),
-   // check ('username').custom(checkUniqueUsername),
+    check ('username').custom(checkUniqueUsername),
     //check ('email','Invalid email').isEmail(),
    // check ('email').custom(checkUniqueEmail),
    // check ('password','The password must comply with at least one uppercase, lowercase, one special character, and one number.').isStrongPassword({
