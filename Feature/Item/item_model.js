@@ -9,6 +9,14 @@ const ItemSchema = new Schema ({
         type: Number,
         required: true,
     },
+    color: {
+        type: Schema.Types.ObjectId,
+        required: [true, ('color id is required')],
+    },
+    stock: {
+        type: Number,
+        required: true,
+    },
     isEnabled: {
         type: Boolean,
         default: true,

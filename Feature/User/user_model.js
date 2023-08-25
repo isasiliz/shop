@@ -19,7 +19,7 @@ const UserSchema = new Schema ({
         type: Date,
     },
     role: {
-        type: String,
+        type: Schema.Types.ObjectId,
         required: true,
     },
     isEnabled: {
