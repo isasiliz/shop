@@ -1,6 +1,6 @@
 const Routes = require('express')
 const routes = Routes()
-const {getUser,createUser, updateUser, deleteUser} = require ('./users_controller')
+const {getUser,createUser, updateUser, deleteUser, deleteAll} = require ('./users_controller')
 const {check} = require('express-validator')
 const checkValidationResult = require('../../Middleware/check_validation_result')
 const checkUniqueEmail = require('../../Middleware/check_unique_email')
@@ -8,7 +8,7 @@ const checkUniqueRole = require('../../Middleware/check_unique_role')
 const checkUniqueUsername = require('../../Middleware/check_unique_username')
 const verifyToken = require('../../Middleware/verifyToken')
 
-routes.get('/user', verifyToken, getUser)
+routes.get('/user', getUser)  //verifyToken va adentro 
     
 routes.post('/user', [
   //  check ('username', 'Invalid username').isLength({min:6,max:8}),
@@ -35,5 +35,7 @@ routes.put('/user', [verifyToken,
 ], updateUser)
 
 routes.delete('/user', deleteUser)
+
+routes.delete('/user-delete-all', deleteAll)
 
 module.exports = routes

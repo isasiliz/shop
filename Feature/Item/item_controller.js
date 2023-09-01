@@ -1,4 +1,4 @@
-const Item = require ('./item_model')
+const Item = require('./item_model')
 
 
 const getItem = async function (req, res) {
@@ -6,10 +6,10 @@ const getItem = async function (req, res) {
     try {
         const [items, count] = await Promise.all([
             await Item.find(),
-            await Item.countDocuments()     
+            await Item.countDocuments()
         ])
-        res.json({items, count})
-            
+        res.json({ items, count })
+
     } catch (error) {
         res.status(500).json({
             status: 500,
@@ -20,7 +20,7 @@ const getItem = async function (req, res) {
 
 const createItem = async function (req, res) {
     const body = req.body
-   
+
 
     if (!body.user) {
         return res.status(400).json({
@@ -38,33 +38,45 @@ const createItem = async function (req, res) {
     }
 
 }
-const updateItem =  async function (req, res) {
-    
+const updateItem = async function (req, res) {
+
     const body = req.body
     const id = req.query.id
-    const {isEnabled, isVerified, user, ...bodyFilter } = body //crea un nuevo body sin los que estan en {}
+    const { isEnabled, isVerified, user, ...bodyFilter } = body //crea un nuevo body sin los que estan en {}
     const options = {
         new: true
     }
 
     try {
-        const updateItem = await Item.findByIdAndUpdate (id, bodyFilter, options)
+        const updateItem = await Item.findByIdAndUpdate(id, bodyFilter, options)
         res.json(updateItem)
-        
+
     } catch (error) {
-        res.status(500).json (error.message)
+        res.status(500).json(error.message)
     }
 
 }
 const deleteItem = async function (req, res) {
     const id = req.query.id
     try {
-        const deleteItem = await Item.findByIdAndDelete (id)
+        const deleteItem = await Item.findByIdAndDelete(id)
         res.json(deleteItem)
-        
+
     } catch (error) {
-        res.status(500).json (error.message)
-        }
+        res.status(500).json(error.message)
+    }
 }
 
-module.exports = {getItem,createItem,updateItem,deleteItem}
+const deleteAll = async function (req, res) {
+    
+    try {
+         await Item.deleteMany()
+        res.json('Success')
+
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
+}
+
+
+module.exports = { getItem, createItem, updateItem, deleteItem, deleteAll }

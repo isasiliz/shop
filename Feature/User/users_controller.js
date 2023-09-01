@@ -71,5 +71,16 @@ const deleteUser = async function (req, res) {
         }
 }
 
-module.exports = {getUser, createUser, updateUser, deleteUser}
+const deleteAll = async function (req, res) {
+    
+    try {
+         await User.deleteMany()
+        res.json('Success')
+
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
+}
+
+module.exports = {getUser, createUser, updateUser, deleteUser, deleteAll}
 
