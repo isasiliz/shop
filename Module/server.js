@@ -17,6 +17,7 @@ class Server {
         this.app.use('/', require('../Feature/User/users_routes'))
         this.app.use ('/', require('../Feature/Login/login_routes'))
         this.app.use ('/', require ('../Feature/Item/item_routes'))
+        this.app.use ('/', require('../Feature/Storage/storage_routes'))
     }
 
     start() {

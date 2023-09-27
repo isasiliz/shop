@@ -1,5 +1,11 @@
 const {Schema, model} = require('mongoose')
 
+const ProfileImageSchema = new Schema ({
+    url:{
+        type: String,
+    }
+},{_id: false}) 
+
 const UserSchema = new Schema ({
     username: {
         type: String,
@@ -18,10 +24,15 @@ const UserSchema = new Schema ({
     dob: {
         type: Date,
     },
+    profileImage: {
+        type: ProfileImageSchema,
+    },
+
     role: {
         type: Schema.Types.ObjectId,
         required: true,
     },
+
     isEnabled: {
         type: Boolean,
         default: true,
